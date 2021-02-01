@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0"
+      prefWidth="1014.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.yqs.controller.MainController">
+    <MenuBar>
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="NewProject"/>
+                    <MenuItem mnemonicParsing="false" text="OpenProject"/>
+                    <MenuItem fx:id="openImageItem" mnemonicParsing="false" text="OpenImage"/>
+                    <MenuItem mnemonicParsing="false" text="OpenMataData"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Cut"/>
+                    <MenuItem mnemonicParsing="false" text="Copy"/>
+                    <MenuItem mnemonicParsing="false" text="Project"/>
+                    <MenuItem mnemonicParsing="false" text="Setting"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Header">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="INI To Header"/>
+                    <MenuItem mnemonicParsing="false" text="Convert Version"/>
+                    <MenuItem mnemonicParsing="false" text="Loade Headers"/>
+                    <MenuItem mnemonicParsing="false" text="Genate Headers"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Live">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Enable"/>
+                    <MenuItem mnemonicParsing="false" text="Setting"/>
+                    <MenuItem mnemonicParsing="false" text="Utilites"/>
+                    <MenuItem mnemonicParsing="false" text="Devices Image View"/>
+                    <MenuItem mnemonicParsing="false" text="Delete"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Tools">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Connection to Devices"/>
+                    <MenuItem mnemonicParsing="false" text="Enable 3A Debug"/>
+                    <MenuItem mnemonicParsing="false" text="Run PLD Gating"/>
+                    <MenuItem mnemonicParsing="false" text="Edit"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Window">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Action 1"/>
+                    <MenuItem mnemonicParsing="false" text="Delete"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Action 1"/>
+                    <MenuItem mnemonicParsing="false" text="Delete"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <VBox prefHeight="820.0" prefWidth="1024.0">
+        <SplitPane prefHeight="775.0" prefWidth="1024.0">
+            <!-- 垂直盒子 右边的-->
+            <VBox>
+                <!-- 水平盒子 最上面的 -->
+                <HBox alignment="CENTER_LEFT" minHeight="48.0">
+                    <!--&lt;!&ndash; 使用已保存的配置按钮 &ndash;&gt;-->
+                    <!--<ComboBox minWidth="180.0" prefHeight="29.0" prefWidth="183.0"-->
+                              <!--promptText="%ui.useSavedConfig">-->
+                        <!--<opaqueInsets>-->
+                            <!--<Insets/>-->
+                        <!--</opaqueInsets>-->
+                        <!--<HBox.margin>-->
+                            <!--<Insets left="8.0"/>-->
+                        <!--</HBox.margin>-->
+                    <!--</ComboBox>-->
+
+                    <!--水平盒子 居中靠左 语言-->
+                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="500.0">
+                        <!-- 语言按钮 -->
+                        <Label text="Language:"/>
+
+                        <!-- 选择语言 -->
+                        <ChoiceBox fx:id="cb_select_language" prefWidth="150.0">
+                            <items>
+                                <!-- 创建一个新的空可观察列表，该列表由arraylist支持。 -->
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="中文"/>
+                                    <String fx:value="English"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <HBox.margin>
+                            <Insets left="8.0"/>
+                        </HBox.margin>
+                    </HBox>
+                    <!-- 简洁模式按钮 -->
+                    <TextField  minWidth="140.0" prefHeight="31.0"  prefWidth="240.0" text="%ui.simpleMode.on"/>
+                    <!--<Button prefHeight="31.0" text="Search"></Button>-->
+                    <!--<Button prefHeight="31.0" text="Add"></Button>-->
+                </HBox>
+                <!-- 垂直盒子 -->
+                <VBox fx:id="main_container" prefHeight="820.0" prefWidth="1024.0">
+                    <TabPane prefHeight="720.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
+                        <tabs>
+                            <Tab text="ImageQulity">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1024.0">
+                                        <HBox fx:id="imageBox" prefHeight="400.0" prefWidth="1000.0" alignment="CENTER">
+                                            <ImageView fx:id="imageView"></ImageView>
+                                        </HBox>
+                                        <HBox fx:id="imageBox2" prefHeight="320.0" prefWidth="1000.0">
+                                            <padding>
+                                                <Insets top="420.0"/>
+                                            </padding>
+                                            <!--折线图-->
+                                            <ImageView fx:id="histogram"></ImageView>
+
+                                            <!--垂直盒子-->
+                                            <VBox prefHeight="200.0" prefWidth="200.0">
+                                                <Label text="当前图片R值："/>
+                                                <Label text="当前图片G值："/>
+                                                <Label text="当前图片B值："/>
+                                                <Label text="当前图片亮度指数："/>
+                                                <Label text="当前图片色偏指数："/>
+                                                <Label text="当前图片清晰度指数："/>
+                                                <Label text="当前图片对比度指数："/>
+                                            </VBox>
+                                            <VBox  fx:id="imageValue" prefHeight="200.0" prefWidth="180.0">
+                                                <Label fx:id="rValue" text="0"/>
+                                                <Label fx:id="gValue" text="0"/>
+                                                <Label fx:id="bValue" text="0"/>
+                                                <Label fx:id="brightnessValue" text="0"></Label>
+                                                <Label fx:id="colorCast" text="0"/>
+                                                <Label fx:id="clarity" text="0"/>
+                                                <Label fx:id="contrastValue" text="0"/>
+                                            </VBox>
+                                        </HBox>
+                                        <HBox>
+                                            <padding>
+                                                <Insets top="550.0"/>
+                                            </padding>
+                                            <VBox prefHeight="220.0" prefWidth="200.0">
+                                                <children>
+                                                    <Label text="日期/时间："/>
+                                                    <Label text="焦距："/>
+                                                    <Label text="光圈值："/>
+                                                    <Label text="亮度值："/>
+                                                    <Label text="曝光时间："/>
+                                                    <Label text="曝光模式："/>
+                                                    <Label text="快门速度："/>
+                                                    <Label text="图片宽度："/>
+                                                    <Label text="图片高度："/>
+                                                </children>
+                                            </VBox>
+                                            <VBox prefHeight="220.0" prefWidth="180.0">
+                                                <children>
+                                                    <Label fx:id="time" text="0"/>
+                                                    <Label fx:id="focal" text="0"/>
+                                                    <Label fx:id="aperture" text="0"/>
+                                                    <Label fx:id="exposureTime" text="0"/>
+                                                    <Label fx:id="exposureMode" text="0"/>
+                                                    <Label fx:id="ShutterSpeed" text="0"/>
+                                                    <Label fx:id="imageWidth" text="0"/>
+                                                    <Label fx:id="imageHeight" text="0"/>
+                                                </children>
+                                            </VBox>
+                                        </HBox>
+                                    </AnchorPane>
+                                </content>
+                            </Tab>
+                        </tabs>
+                    </TabPane>
+                </VBox>
+            </VBox>
+
+        </SplitPane>
+    </VBox>
+
+</VBox>
